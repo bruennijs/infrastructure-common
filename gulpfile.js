@@ -35,7 +35,7 @@ gulp.task('dist.ts', function() {
 });
 
 gulp.task('dist.js', function() {
-  gulp.src('*.{js,json}').
+  gulp.src('src/*.{js,json}').
   pipe(gulp.dest(path.join(distBaseDir, '')));
 });
 
