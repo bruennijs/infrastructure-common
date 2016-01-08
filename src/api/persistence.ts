@@ -6,7 +6,7 @@
 
 import rx = require('rx');
 
-import {IdObject, Id} from "./model";
+import {IdObject, Id} from "./entity";
 
 export interface Func1<T1, TResult> {
   (arg1?:T1): TResult;

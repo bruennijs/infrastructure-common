@@ -2,7 +2,7 @@
  * Created by bruenni on 18.10.15.
  */
 
-import {IdObject} from "./model";
+import {IdObject} from "./entity";
 
 /**
  * Generic factory from/ domain model <-> db model

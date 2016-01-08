@@ -8,7 +8,7 @@ import rx = require('rx');
 import mongodb = require("mongodb");
 
 import {IFactory} from "../../factory";
-import {IdObject, Id} from "../../model";
+import {IdObject, Id} from "../../entity";
 import {IRepository, Func1, Func2} from "../../persistence";
 
 export class MongoDbRepository<TModel extends IdObject> implements IRepository<IdObject> {

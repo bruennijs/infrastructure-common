@@ -1,5 +1,6 @@
-/// <reference path="references.d.ts" />
+/// <reference path="../typings/auto.d.ts" />
 
-export * from "./event";
-export * from "./model";
-export * from "./event/impl/DomainEventBusImpl";
+export {IDomainEvent, IDomainEventBus} from "./api/event";
+export * from "./api/entity";
+export * from "./api/event/impl/DomainEventBusImpl";
+

@@ -1,7 +1,4 @@
-/// <reference path="references.d.ts" />
-
-declare module "infrastructure-common" {
-    export * from "./event";
-    export * from "./model";
-    export * from "./event/impl/DomainEventBusImpl";
-}
+/// <reference path="../../typings/auto.d.ts" />
+export { IDomainEvent, IDomainEventBus } from "./api/event";
+export * from "./api/entity";
+export * from "./api/event/impl/DomainEventBusImpl";

@@ -2,9 +2,8 @@
  * Created by bruenni on 25.10.15.
  */
 
-import {Id} from "./model";
-
 import rx = require('rx');
+import {Id} from "./entity";
 
     /**
      * All domain events inherits IDomainEvent
