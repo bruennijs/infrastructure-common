@@ -6,11 +6,12 @@
         "noImplicitAny": false,
         "removeComments": true,
         "outDir": "./dist",
-        "rootDir": ".",
+        "rootDir": "./",
+        "noLib": false,
         "sourceMap": true,
-        "noResolve": false,
-        "outFile": "./dist/infrastructure-common.js"
+        "noResolve": false
     },
+    "files": ["src/api.ts"],
     "exclude": [
         "node_modules", "dist"
     ]

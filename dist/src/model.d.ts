@@ -1,4 +1,3 @@
-/// <reference path="../../typings/tsd.d.ts" />
 export declare class Id {
     value: string;
     private _value;

@@ -1,4 +1,3 @@
-/// <reference path="../../typings/tsd.d.ts" />
 import { Id } from "./model";
 import rx = require('rx');
 export interface IDomainEvent {
