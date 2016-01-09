@@ -48,15 +48,9 @@ declare module 'infrastructure-common/event' {
 	export interface IEventHandler<TEvent extends IDomainEvent> {
 	    Handle(event: TEvent): TEvent[];
 	}
-	export class DomainEventBusImpl implements IDomainEventBus {
-	    private map;
-	    constructor();
-	    publish(event: IDomainEvent): void;
-	    subscribe(contextName: string): rx.Observable<IDomainEvent>;
-	}
 
 }
-declare module 'infrastructure-common/impl/DomainEventBusImpl' {
+declare module 'infrastructure-common/impl/event' {
 	import * as rx from "rx";
 	import { IDomainEvent, IDomainEventBus } from 'infrastructure-common/event';
 	export class DomainEventBusImpl implements IDomainEventBus {
@@ -93,7 +87,7 @@ declare module 'infrastructure-common/persistence' {
 	}
 
 }
-declare module 'infrastructure-common/impl/MongoDbRepository' {
+declare module 'infrastructure-common/impl/persistence' {
 	import rx = require('rx');
 	import mongodb = require("mongodb");
 	import { IFactory } from 'infrastructure-common/factory';
@@ -118,7 +112,7 @@ declare module 'infrastructure-common/impl/MongoDbRepository' {
 	}
 
 }
-declare module 'infrastructure-common/parser/DomainEventDtoParser' {
+declare module 'infrastructure-common/parser/event' {
 	import { IDomainEvent } from 'infrastructure-common/event';
 	export class DomainEventDtoParser {
 	    serialize(dtoObject: any, event: IDomainEvent): void;

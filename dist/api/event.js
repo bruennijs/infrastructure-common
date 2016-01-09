@@ -3,7 +3,6 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var rx = require('rx');
 var DomainEventBase = (function () {
     function DomainEventBase(context, name) {
         this._context = "";
@@ -51,33 +50,4 @@ var AggregateEvent = (function (_super) {
     return AggregateEvent;
 })(DomainEventBase);
 exports.AggregateEvent = AggregateEvent;
-var DomainEventBusImpl = (function () {
-    function DomainEventBusImpl() {
-        this.map = {};
-    }
-    DomainEventBusImpl.prototype.publish = function (event) {
-        var observables = this.map[event.context];
-        if (observables !== undefined) {
-            observables.forEach(function (observable, n, array) {
-                observable.onNext(event);
-            });
-        }
-    };
-    DomainEventBusImpl.prototype.subscribe = function (contextName) {
-        if (contextName === undefined) {
-            throw new Error("groupName undefined");
-        }
-        var subject = new rx.ReplaySubject();
-        var observableList = this.map[contextName];
-        if (observableList !== undefined) {
-            observableList.push(subject);
-        }
-        else {
-            this.map[contextName] = [subject];
-        }
-        return subject;
-    };
-    return DomainEventBusImpl;
-})();
-exports.DomainEventBusImpl = DomainEventBusImpl;
 //# sourceMappingURL=event.js.map
