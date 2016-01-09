@@ -1,4 +1,4 @@
-/// <reference path="../typings/tsd.d.ts" />
+/// <reference path="../index.ref.d.ts" />
 export * from "./api/event";
 export * from "./api/entity";
 export * from "./api/impl/DomainEventBusImpl";

@@ -1,5 +1,5 @@
 /// <reference path="index.ref.d.ts" />
-declare module 'infrastructure-common-js/entity' {
+declare module 'infrastructure-common/entity' {
 	export class Id {
 	    value: string;
 	    private _value;
@@ -20,9 +20,9 @@ declare module 'infrastructure-common-js/entity' {
 	}
 
 }
-declare module 'infrastructure-common-js/event' {
+declare module 'infrastructure-common/event' {
 	import rx = require('rx');
-	import { Id } from 'infrastructure-common-js/entity';
+	import { Id } from 'infrastructure-common/entity';
 	export interface IDomainEvent {
 	    context: string;
 	    name: string;
@@ -56,9 +56,9 @@ declare module 'infrastructure-common-js/event' {
 	}
 
 }
-declare module 'infrastructure-common-js/impl/DomainEventBusImpl' {
+declare module 'infrastructure-common/impl/DomainEventBusImpl' {
 	import * as rx from "rx";
-	import { IDomainEvent, IDomainEventBus } from 'infrastructure-common-js/event';
+	import { IDomainEvent, IDomainEventBus } from 'infrastructure-common/event';
 	export class DomainEventBusImpl implements IDomainEventBus {
 	    private map;
 	    constructor();
@@ -67,17 +67,17 @@ declare module 'infrastructure-common-js/impl/DomainEventBusImpl' {
 	}
 
 }
-declare module 'infrastructure-common-js/factory' {
-	import { IdObject } from 'infrastructure-common-js/entity';
+declare module 'infrastructure-common/factory' {
+	import { IdObject } from 'infrastructure-common/entity';
 	export interface IFactory<TModel extends IdObject> {
 	    CreateFromMongoDocument(document: any): TModel;
 	    ToMongoDocument(obj: TModel): any;
 	}
 
 }
-declare module 'infrastructure-common-js/persistence' {
+declare module 'infrastructure-common/persistence' {
 	import rx = require('rx');
-	import { IdObject, Id } from 'infrastructure-common-js/entity';
+	import { IdObject, Id } from 'infrastructure-common/entity';
 	export interface Func1<T1, TResult> {
 	    (arg1?: T1): TResult;
 	}
@@ -93,12 +93,12 @@ declare module 'infrastructure-common-js/persistence' {
 	}
 
 }
-declare module 'infrastructure-common-js/impl/MongoDbRepository' {
+declare module 'infrastructure-common/impl/MongoDbRepository' {
 	import rx = require('rx');
 	import mongodb = require("mongodb");
-	import { IFactory } from 'infrastructure-common-js/factory';
-	import { IdObject, Id } from 'infrastructure-common-js/entity';
-	import { IRepository, Func2 } from 'infrastructure-common-js/persistence';
+	import { IFactory } from 'infrastructure-common/factory';
+	import { IdObject, Id } from 'infrastructure-common/entity';
+	import { IRepository, Func2 } from 'infrastructure-common/persistence';
 	export class MongoDbRepository<TModel extends IdObject> implements IRepository<IdObject> {
 	    protected collection: mongodb.Collection;
 	    protected db: mongodb.Db;
@@ -118,8 +118,8 @@ declare module 'infrastructure-common-js/impl/MongoDbRepository' {
 	}
 
 }
-declare module 'infrastructure-common-js/parser/DomainEventDtoParser' {
-	import { IDomainEvent } from 'infrastructure-common-js/event';
+declare module 'infrastructure-common/parser/DomainEventDtoParser' {
+	import { IDomainEvent } from 'infrastructure-common/event';
 	export class DomainEventDtoParser {
 	    serialize(dtoObject: any, event: IDomainEvent): void;
 	    addContent(objectAddTo: any, content: any): void;
