@@ -2,8 +2,6 @@
  * Created by bruenni on 23.09.15.
  */
 
-/// <reference path="./../typings/tsd.d.ts" />
-
 import rx = require('rx');
 
 import {IdObject, Id} from "./entity";
@@ -16,6 +14,9 @@ export interface Func2<T1, T2, TResult> {
   (arg1?:T1, arg2?:T2): TResult;
 }
 
+/**
+ * Abstract interface of an entity repository
+ */
 export interface IRepository<TModel extends IdObject>  {
 
   /**

@@ -48,9 +48,15 @@ declare module 'infrastructure-common-js/event' {
 	export interface IEventHandler<TEvent extends IDomainEvent> {
 	    Handle(event: TEvent): TEvent[];
 	}
+	export class DomainEventBusImpl implements IDomainEventBus {
+	    private map;
+	    constructor();
+	    publish(event: IDomainEvent): void;
+	    subscribe(contextName: string): rx.Observable<IDomainEvent>;
+	}
 
 }
-declare module 'infrastructure-common-js/event/impl/DomainEventBusImpl' {
+declare module 'infrastructure-common-js/impl/DomainEventBusImpl' {
 	import * as rx from "rx";
 	import { IDomainEvent, IDomainEventBus } from 'infrastructure-common-js/event';
 	export class DomainEventBusImpl implements IDomainEventBus {
@@ -61,10 +67,62 @@ declare module 'infrastructure-common-js/event/impl/DomainEventBusImpl' {
 	}
 
 }
-declare module 'infrastructure-common-js' {
-	/// <reference path="../typings/auto.d.ts" />
-	export * from 'api/event';
-	export * from 'api/entity';
-	export * from 'api/event/impl/DomainEventBusImpl';
+declare module 'infrastructure-common-js/factory' {
+	import { IdObject } from 'infrastructure-common-js/entity';
+	export interface IFactory<TModel extends IdObject> {
+	    CreateFromMongoDocument(document: any): TModel;
+	    ToMongoDocument(obj: TModel): any;
+	}
+
+}
+declare module 'infrastructure-common-js/persistence' {
+	import rx = require('rx');
+	import { IdObject, Id } from 'infrastructure-common-js/entity';
+	export interface Func1<T1, TResult> {
+	    (arg1?: T1): TResult;
+	}
+	export interface Func2<T1, T2, TResult> {
+	    (arg1?: T1, arg2?: T2): TResult;
+	}
+	export interface IRepository<TModel extends IdObject> {
+	    GetById(id: Id): rx.Observable<TModel>;
+	    Find(cb: Func2<Error, TModel[], void>): void;
+	    Insert(object: TModel): rx.Observable<TModel>;
+	    Update(object: TModel): rx.Observable<TModel>;
+	    nextId(): Id;
+	}
+
+}
+declare module 'infrastructure-common-js/impl/MongoDbRepository' {
+	import rx = require('rx');
+	import mongodb = require("mongodb");
+	import { IFactory } from 'infrastructure-common-js/factory';
+	import { IdObject, Id } from 'infrastructure-common-js/entity';
+	import { IRepository, Func2 } from 'infrastructure-common-js/persistence';
+	export class MongoDbRepository<TModel extends IdObject> implements IRepository<IdObject> {
+	    protected collection: mongodb.Collection;
+	    protected db: mongodb.Db;
+	    configuration: any;
+	    factory: IFactory<TModel>;
+	    private _db;
+	    private _collection;
+	    private _collectionName;
+	    constructor(configuration: any, factory: IFactory<TModel>, collectionName: string);
+	    Init(dropCollections?: boolean): rx.Observable<void>;
+	    Find(cb: Func2<Error, TModel[], void>): void;
+	    Insert(object: TModel): rx.Observable<TModel>;
+	    Update(object: TModel): rx.Observable<TModel>;
+	    private CreateCollection(cb);
+	    nextId(): Id;
+	    GetById(id: Id): Rx.Observable<TModel>;
+	}
+
+}
+declare module 'infrastructure-common-js/parser/DomainEventDtoParser' {
+	import { IDomainEvent } from 'infrastructure-common-js/event';
+	export class DomainEventDtoParser {
+	    serialize(dtoObject: any, event: IDomainEvent): void;
+	    addContent(objectAddTo: any, content: any): void;
+	}
 
 }

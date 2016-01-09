@@ -2,15 +2,16 @@
  * Created by bruenni on 24.09.15.
  */
 
-/// <reference path="./../../../typings/tsd.d.ts" />
-
 import rx = require('rx');
 import mongodb = require("mongodb");
 
-import {IFactory} from "../../factory";
-import {IdObject, Id} from "../../entity";
-import {IRepository, Func1, Func2} from "../../persistence";
+import {IFactory} from "../factory";
+import {IdObject, Id} from "../entity";
+import {IRepository, Func1, Func2} from "../persistence";
 
+/**
+ * Mongo db repository implementation
+ */
 export class MongoDbRepository<TModel extends IdObject> implements IRepository<IdObject> {
 
   /**
@@ -120,7 +121,7 @@ export class MongoDbRepository<TModel extends IdObject> implements IRepository<I
     //// fidn all items
     this._collection.find({}).toArray(function(err, objs) {
 
-      var models = [];
+      var models: any = [];
 
       //model.Note.Parse
       objs.forEach(function(item, n, ar) {

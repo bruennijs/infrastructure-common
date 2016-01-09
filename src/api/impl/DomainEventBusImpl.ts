@@ -5,8 +5,11 @@
 //import rx = require('rx');
 import * as rx from "rx";
 
-import {IDomainEvent, IDomainEventBus} from "../../event";
+import {IDomainEvent, IDomainEventBus} from "../event";
 
+/**
+ * Implementation of IDomainEventBus
+ */
     export class DomainEventBusImpl implements IDomainEventBus {
 
         /**

@@ -1,1 +1,1 @@
-/// <reference path="typings/auto.d.ts" />
+/// <reference path="typings/tsd.d.ts" />

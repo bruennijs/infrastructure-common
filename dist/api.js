@@ -3,5 +3,7 @@ function __export(m) {
 }
 __export(require("./api/event"));
 __export(require("./api/entity"));
-__export(require("./api/event/impl/DomainEventBusImpl"));
+__export(require("./api/impl/DomainEventBusImpl"));
+__export(require("./api/impl/MongoDbRepository"));
+__export(require("./api/parser/DomainEventDtoParser"));
 //# sourceMappingURL=api.js.map

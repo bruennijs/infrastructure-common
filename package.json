@@ -1,5 +1,5 @@
 {
-  "name": "infrastructure-common-js",
+  "name": "infrastructure-common",
   "version": "1.0.0",
   "description": "Contains common infrastucture implementations",
   "main": "dist/src/api.js",

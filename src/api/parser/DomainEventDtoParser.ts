@@ -3,7 +3,7 @@
  */
 
 var _ = require("underscore");
-import {IDomainEvent} from "./../../event";
+import {IDomainEvent} from "./../event";
 
 /**
  * Creates message dtos from domain models
