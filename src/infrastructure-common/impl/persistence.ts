@@ -2,6 +2,8 @@
  * Created by bruenni on 24.09.15.
  */
 
+/// <reference path="../../../typings/auto.d.ts" />
+
 import rx = require('rx');
 import mongodb = require("mongodb");
 

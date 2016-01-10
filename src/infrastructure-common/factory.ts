@@ -2,6 +2,8 @@
  * Created by bruenni on 18.10.15.
  */
 
+/// <reference path="../../typings/auto.d.ts" />
+
 import {IdObject} from "./entity";
 
 /**

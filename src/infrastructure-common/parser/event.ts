@@ -2,6 +2,8 @@
  * Created by bruenni on 19.12.15.
  */
 
+/// <reference path="../../../typings/auto.d.ts" />
+
 var _ = require("underscore");
 import {IDomainEvent} from "./../event";
 

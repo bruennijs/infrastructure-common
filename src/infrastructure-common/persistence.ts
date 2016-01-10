@@ -2,8 +2,9 @@
  * Created by bruenni on 23.09.15.
  */
 
-import rx = require('rx');
+/// <reference path="../../typings/auto.d.ts" />
 
+import rx = require('rx');
 import {IdObject, Id} from "./entity";
 
 export interface Func1<T1, TResult> {

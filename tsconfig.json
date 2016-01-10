@@ -10,7 +10,9 @@
         "sourceMap": true,
         "noResolve": false
     },
-    "files": ["src/api.ts"],
+    "files": [
+        "src/infrastructure-common.ts"
+    ],
     "exclude": [
         "node_modules", "dist"
     ]

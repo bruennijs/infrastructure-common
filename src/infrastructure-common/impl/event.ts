@@ -2,7 +2,8 @@
  * Created by bruenni on 25.10.15.
  */
 
-//import rx = require('rx');
+/// <reference path="../../../typings/auto.d.ts" />
+
 import * as rx from "rx";
 
 import {IDomainEvent, IDomainEventBus} from "../event";

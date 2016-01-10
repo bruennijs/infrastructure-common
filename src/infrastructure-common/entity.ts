@@ -2,6 +2,8 @@
  * Created by bruenni on 23.09.15.
  */
 
+/// <reference path="../../typings/auto.d.ts" />
+
 import util = require('util');
 import fs = require('fs');
 import path = require('path');

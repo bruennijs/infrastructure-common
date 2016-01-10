@@ -2,7 +2,7 @@
   "name": "infrastructure-common",
   "version": "1.0.0",
   "description": "Contains common infrastucture implementations",
-  "main": "dist/src/api.js",
+  "main": "dist/infrastructure-common.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
