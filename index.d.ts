@@ -52,18 +52,6 @@ declare module 'infrastructure-common/event' {
 	}
 
 }
-declare module 'infrastructure-common/impl/event' {
-	/// <reference path="../../../typings/auto.d.ts" />
-	import * as rx from "rx";
-	import { IDomainEvent, IDomainEventBus } from 'infrastructure-common/event';
-	export class DomainEventBusImpl implements IDomainEventBus {
-	    private map;
-	    constructor();
-	    publish(event: IDomainEvent): void;
-	    subscribe(contextName: string): rx.Observable<IDomainEvent>;
-	}
-
-}
 declare module 'infrastructure-common/factory' {
 	/// <reference path="../../typings/auto.d.ts" />
 	import { IdObject } from 'infrastructure-common/entity';
@@ -89,6 +77,18 @@ declare module 'infrastructure-common/persistence' {
 	    Insert(object: TModel): rx.Observable<TModel>;
 	    Update(object: TModel): rx.Observable<TModel>;
 	    nextId(): Id;
+	}
+
+}
+declare module 'infrastructure-common/impl/event' {
+	/// <reference path="../../../typings/auto.d.ts" />
+	import * as rx from "rx";
+	import { IDomainEvent, IDomainEventBus } from 'infrastructure-common/event';
+	export class DomainEventBusImpl implements IDomainEventBus {
+	    private map;
+	    constructor();
+	    publish(event: IDomainEvent): void;
+	    subscribe(contextName: string): rx.Observable<IDomainEvent>;
 	}
 
 }
@@ -128,6 +128,9 @@ declare module 'infrastructure-common/parser/event' {
 
 }
 declare module 'infrastructure-common' {
+	export * from 'infrastructure-common/event';
+	export * from 'infrastructure-common/factory';
+	export * from 'infrastructure-common/persistence';
 	export * from 'infrastructure-common/impl/event';
 	export * from 'infrastructure-common/impl/persistence';
 	export * from 'infrastructure-common/parser/event';
