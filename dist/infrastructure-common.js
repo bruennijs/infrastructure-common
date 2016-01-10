@@ -1,6 +1,7 @@
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
+__export(require("./infrastructure-common/entity"));
 __export(require("./infrastructure-common/event"));
 __export(require("./infrastructure-common/factory"));
 __export(require("./infrastructure-common/persistence"));

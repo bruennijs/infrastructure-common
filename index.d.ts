@@ -128,6 +128,7 @@ declare module 'infrastructure-common/parser/event' {
 
 }
 declare module 'infrastructure-common' {
+	export * from 'infrastructure-common/entity';
 	export * from 'infrastructure-common/event';
 	export * from 'infrastructure-common/factory';
 	export * from 'infrastructure-common/persistence';
