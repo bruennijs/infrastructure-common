@@ -64,6 +64,60 @@ declare module 'infrastructure-common/impl/event' {
 	}
 
 }
+declare module 'infrastructure-common/factory' {
+	/// <reference path="../../typings/auto.d.ts" />
+	import { IdObject } from 'infrastructure-common/entity';
+	export interface IFactory<TModel extends IdObject> {
+	    CreateFromMongoDocument(document: any): TModel;
+	    ToMongoDocument(obj: TModel): any;
+	}
+
+}
+declare module 'infrastructure-common/persistence' {
+	/// <reference path="../../typings/auto.d.ts" />
+	import rx = require('rx');
+	import { IdObject, Id } from 'infrastructure-common/entity';
+	export interface Func1<T1, TResult> {
+	    (arg1?: T1): TResult;
+	}
+	export interface Func2<T1, T2, TResult> {
+	    (arg1?: T1, arg2?: T2): TResult;
+	}
+	export interface IRepository<TModel extends IdObject> {
+	    GetById(id: Id): rx.Observable<TModel>;
+	    Find(cb: Func2<Error, TModel[], void>): void;
+	    Insert(object: TModel): rx.Observable<TModel>;
+	    Update(object: TModel): rx.Observable<TModel>;
+	    nextId(): Id;
+	}
+
+}
+declare module 'infrastructure-common/impl/persistence' {
+	/// <reference path="../../../typings/auto.d.ts" />
+	import rx = require('rx');
+	import mongodb = require("mongodb");
+	import { IFactory } from 'infrastructure-common/factory';
+	import { IdObject, Id } from 'infrastructure-common/entity';
+	import { IRepository, Func2 } from 'infrastructure-common/persistence';
+	export class MongoDbRepository<TModel extends IdObject> implements IRepository<IdObject> {
+	    protected collection: mongodb.Collection;
+	    protected db: mongodb.Db;
+	    configuration: any;
+	    factory: IFactory<TModel>;
+	    private _db;
+	    private _collection;
+	    private _collectionName;
+	    constructor(configuration: any, factory: IFactory<TModel>, collectionName: string);
+	    Init(dropCollections?: boolean): rx.Observable<void>;
+	    Find(cb: Func2<Error, TModel[], void>): void;
+	    Insert(object: TModel): rx.Observable<TModel>;
+	    Update(object: TModel): rx.Observable<TModel>;
+	    private CreateCollection(cb);
+	    nextId(): Id;
+	    GetById(id: Id): Rx.Observable<TModel>;
+	}
+
+}
 declare module 'infrastructure-common/parser/event' {
 	/// <reference path="../../../typings/auto.d.ts" />
 	import { IDomainEvent } from 'infrastructure-common/event';
@@ -74,8 +128,6 @@ declare module 'infrastructure-common/parser/event' {
 
 }
 declare module 'infrastructure-common' {
-	export * from 'infrastructure-common/event';
-	export * from 'infrastructure-common/entity';
 	export * from 'infrastructure-common/impl/event';
 	export * from 'infrastructure-common/impl/persistence';
 	export * from 'infrastructure-common/parser/event';
